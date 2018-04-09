@@ -33,6 +33,7 @@ namespace CityInfo.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseStaticFiles();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,15 +54,14 @@ namespace CityInfo.API
             app.Run(async (context) =>
             {
                 var message = doSomething();
+                context.Response.ContentType = "text/html";
                 await context.Response.WriteAsync(message);
             });
         }
 
         private string doSomething()
         {
-            return $"This is a Test API. ASP.NET Core 2." + Environment.NewLine +
-                $"If you see this message the API is up and Running. " + Environment.NewLine +
-                $"Use Postman to intorigate this API.";
+            return $"<h2>This is a Test API. ASP.NET Core 2.</h2><div><p>If you see this message the API is up and Running. <br/>Use Postman to intorigate this API.</p></div>";
         }
     }
 }
