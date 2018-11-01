@@ -53,15 +53,15 @@ namespace CityInfo.API
 
             app.Run(async (context) =>
             {
-                var message = doSomething();
+                var message = DoSomething();
                 context.Response.ContentType = "text/html";
                 await context.Response.WriteAsync(message);
             });
         }
 
-        private string doSomething()
+        private string DoSomething()
         {
-            return $"<h2>This is a Test API. ASP.NET Core 2.</h2><div><p>If you see this message the API is up and Running. <br/>Use Postman to intorigate this API.</p></div>";
+            return $"<h2>This is a Test API. ASP.NET Core 2.0</h2><div><p>If you see this message the API is up and Running. <br/>Use Postman to intorigate this API.</p></div>";
         }
     }
 }

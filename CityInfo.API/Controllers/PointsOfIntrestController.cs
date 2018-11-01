@@ -2,10 +2,7 @@
 using CityInfo.API.Store;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CityInfo.API.Controllers
 {
@@ -15,20 +12,20 @@ namespace CityInfo.API.Controllers
         [HttpGet("{cityId}/pointsofinterest")]
         public IActionResult GetPointsOfInterest(int cityId)
         {
-            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c=> c.Id == cityId);
+            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (foundCity == null)
                 return NotFound();
 
             return Ok(foundCity.PointsOfInterest);
         }
-        [HttpGet("{cityId}/pointofinterest/{id}", Name ="GetPointOfInterest")]
+        [HttpGet("{cityId}/pointofinterest/{id}", Name = "GetPointOfInterest")]
         public IActionResult GetPointOfInterest(int cityId, int id)
         {
             var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (foundCity == null)
                 return NotFound();
 
-            var foundPointOfInterest = foundCity.PointsOfInterest.FirstOrDefault(p=>p.Id == id);
+            var foundPointOfInterest = foundCity.PointsOfInterest.FirstOrDefault(p => p.Id == id);
             if (foundPointOfInterest == null)
                 return NotFound();
             return Ok(foundPointOfInterest);
@@ -55,7 +52,7 @@ namespace CityInfo.API.Controllers
                 NotFound();
             }
 
-            var maxIdOfPointOfInterest = CitiesDataStore.Current.Cities.SelectMany(c => c.PointsOfInterest).Max(m=>m.Id) ;
+            var maxIdOfPointOfInterest = CitiesDataStore.Current.Cities.SelectMany(c => c.PointsOfInterest).Max(m => m.Id);
 
             var finalPointOInterest = new PointOfInterestDto()
             {
@@ -80,10 +77,10 @@ namespace CityInfo.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c=>c.Id == cityId);
+            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (foundCity == null)
                 NotFound();
-            var poi = foundCity.PointsOfInterest.FirstOrDefault(p=>p.Id == poiId);
+            var poi = foundCity.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
             if (poi == null)
                 NotFound();
 
@@ -94,13 +91,13 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpPatch("{cityId}/pointsofinterest/{poiId}")]
-        public IActionResult PartiallyUpdatedPointOfInterest(int cityId, int poiId, 
+        public IActionResult PartiallyUpdatedPointOfInterest(int cityId, int poiId,
             [FromBody] JsonPatchDocument<PointOfInterestForUpdateDto> patchDoc)
         {
             if (patchDoc == null)
                 return BadRequest();
 
-            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c=>c.Id == cityId);
+            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (foundCity == null)
                 return NotFound();
 
@@ -126,17 +123,17 @@ namespace CityInfo.API.Controllers
             poi.Name = poiToPatch.Name;
             poi.Description = poiToPatch.Description;
 
-            return NoContent(); 
+            return NoContent();
         }
 
         [HttpDelete("{cityId}/pointsofinterest/{poiId}")]
         public IActionResult DeletePointOfInterest(int cityId, int poiId)
         {
-            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c=>c.Id == cityId);
+            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (foundCity == null)
                 return NotFound();
 
-            var poi = foundCity.PointsOfInterest.FirstOrDefault(p=>p.Id == poiId);
+            var poi = foundCity.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
             if (poi == null)
                 return NotFound();
 
