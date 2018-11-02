@@ -46,11 +46,6 @@ namespace CityInfo.API
             app.UseStatusCodePages();
             app.UseMvc();
 
-            //app.Run((x) => 
-            //{
-            //    throw new Exception("Example Exception");
-            //});
-
             app.Run(async (context) =>
             {
                 var message = DoSomething();
