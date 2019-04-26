@@ -1,4 +1,5 @@
 ﻿using CityInfo.API.Store;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace CityInfo.API.Controllers
 {
     [Route("/api/cities")]
+    [EnableCors("AllowOrigin")]
     public class CitiesController : Controller
     {
         [HttpGet()]

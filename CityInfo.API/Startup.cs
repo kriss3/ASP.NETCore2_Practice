@@ -17,6 +17,12 @@ namespace CityInfo.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options => {
+                options.AddPolicy("AllowOrigin",
+                builder => builder.AllowAnyOrigin());
+            });
+
             services.AddMvc()
                 .AddJsonOptions(o =>
                 {
@@ -44,6 +50,10 @@ namespace CityInfo.API
             }
 
             app.UseStatusCodePages();
+            app.UseCors(builder => {
+                builder.WithOrigins("AllowAnyOrigin");
+            });
+
             app.UseMvc();
 
             app.Run(async (context) =>
@@ -56,7 +66,12 @@ namespace CityInfo.API
 
         private string DoSomething()
         {
-            return $"<h2>This is a Test API. ASP.NET Core 2.0</h2><div><p>If you see this message the API is up and Running. <br/>Use Postman to intorigate this API.</p></div>";
+            return $"<h2>This is a Test API. ASP.NET Core 2.2</h2>" +
+                      $"<div>" +
+                      $"    <p>If you see this message the API is up and Running. <br/>" +
+                      $"    Use Postman to intorigate this API. <br/></p>" +
+                      $"    CORS Implemented." +
+                      $"</div>";
         }
     }
 }
