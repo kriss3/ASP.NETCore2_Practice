@@ -1,5 +1,6 @@
 ﻿using CityInfo.API.Models;
 using CityInfo.API.Store;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Linq;
 namespace CityInfo.API.Controllers
 {
     [Route("/api/cities")]
+    [EnableCors("AllowOrigin")]
     public class PointsOfIntrestController : Controller
     {
         [HttpGet("{cityId}/pointsofinterest")]
