@@ -1,7 +1,6 @@
 ﻿using CityInfo.API.Models;
 using CityInfo.API.Store;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -68,7 +67,7 @@ namespace CityInfo.API.Controllers
         }
 
         [HttpPut("{cityId}/pointsofinterest/{poiId}")]
-        public IActionResult UpdatePointOfIntrest(int cityId, int poiId, [FromBody] PointOfInterestForUpdateDto pointOfInterest)
+        public IActionResult UpdatePointOfInterest(int cityId, int poiId, [FromBody] PointOfInterestForUpdateDto pointOfInterest)
         {
             if (pointOfInterest == null)
                 return BadRequest();
@@ -90,42 +89,6 @@ namespace CityInfo.API.Controllers
             poi.Description = pointOfInterest.Description;
 
             return NoContent(); //204 => can also return 200OK and pass updated resource;
-        }
-
-        [HttpPatch("{cityId}/pointsofinterest/{poiId}")]
-        public IActionResult PartiallyUpdatedPointOfInterest(int cityId, int poiId,
-            [FromBody] JsonPatchDocument<PointOfInterestForUpdateDto> patchDoc)
-        {
-            if (patchDoc == null)
-                return BadRequest();
-
-            var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-            if (foundCity == null)
-                return NotFound();
-
-            var poi = foundCity.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
-            if (poi == null)
-                return NotFound();
-
-            var poiToPatch = new PointOfInterestForUpdateDto()
-            {
-                Name = poi.Name,
-                Description = poi.Description
-            };
-
-            patchDoc.ApplyTo(poiToPatch, ModelState);
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            if (poiToPatch.Name.Equals(poiToPatch.Description))
-                ModelState.AddModelError("Description", "Description should be different from the name.");
-
-            TryValidateModel(poiToPatch);
-
-            poi.Name = poiToPatch.Name;
-            poi.Description = poiToPatch.Description;
-
-            return NoContent();
         }
 
         [HttpDelete("{cityId}/pointsofinterest/{poiId}")]

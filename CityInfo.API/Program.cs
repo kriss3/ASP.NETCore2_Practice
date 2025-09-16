@@ -29,3 +29,23 @@ app.UseCors("AllowOrigin");
 
 app.UseRouting();
 app.MapControllers();
+
+// Fallback endpoint
+app.MapFallback(async context =>
+{
+	var message = DoSomething();
+	context.Response.ContentType = "text/html";
+	await context.Response.WriteAsync(message);
+});
+
+app.Run();
+
+static string DoSomething()
+{
+	return $"<h2>This is a Test API. ASP.NET Core/.NET 9</h2>" +
+		   $"<div>" +
+		   $"    <p>If you see this message the API is up and Running. <br/>" +
+		   $"    Use Postman to interrogate this API. <br/></p>" +
+		   $"    CORS Implemented." +
+		   $"</div>";
+}
