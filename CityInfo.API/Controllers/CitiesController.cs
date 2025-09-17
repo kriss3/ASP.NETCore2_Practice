@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CityInfo.API.Controllers;
 
 [Route("/api/cities")]
+[ApiController]
 [EnableCors("AllowOrigin")]
 public class CitiesController : Controller
 {

@@ -4,7 +4,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Adding Services.
 builder.Services.AddCors(options => {
 	options.AddPolicy("AllowOrigin", 
-		builder => builder.AllowAnyOrigin());
+		builder => builder
+		.AllowAnyOrigin()
+		.AllowAnyMethod()
+		.AllowAnyHeader());
 });
 
 builder.Services.AddControllers()
@@ -16,7 +19,7 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
-// Configure the HTTP request pipliene
+// Configure the HTTP request pipe-line
 if (app.Environment.IsDevelopment())
 	app.UseDeveloperExceptionPage();
 else
@@ -25,9 +28,8 @@ else
 app.UseStaticFiles();
 app.UseStatusCodePages();
 
-app.UseCors("AllowOrigin");
-
 app.UseRouting();
+app.UseCors("AllowOrigin");
 app.MapControllers();
 
 // Fallback endpoint
