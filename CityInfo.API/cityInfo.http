@@ -31,3 +31,6 @@ Content-Type: application/json
   "name": "Science World Updated",
   "description": "Interactive science museum in a geodesic dome."
 }
+
+### Delete a point of interest
+DELETE https://localhost:5001/api/cities/0/pointsofinterest/2
