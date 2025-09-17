@@ -13,3 +13,12 @@ Accept: application/json
 ### Get a specific point of interest
 GET https://localhost:5001/api/cities/0/pointofinterest/1
 Accept: application/json
+
+### Create a new point of interest
+POST https://localhost:5001/api/cities/0/pointsofinterest
+Content-Type: application/json
+
+{
+  "name": "Granville Island",
+  "description": "Public market and artisan shops on a small island."
+}
