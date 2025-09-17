@@ -1,3 +1,7 @@
 ﻿### Get all cities
 GET https://localhost:5001/api/cities
 Accept: application/json
+
+### Get a specific city (Vancouver - ID 0)
+GET https://localhost:5001/api/cities/0
+Accept: application/json
