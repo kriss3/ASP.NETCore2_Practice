@@ -22,3 +22,12 @@ Content-Type: application/json
   "name": "Granville Island",
   "description": "Public market and artisan shops on a small island."
 }
+
+### Update an existing point of interest
+PUT https://localhost:5001/api/cities/0/pointsofinterest/1
+Content-Type: application/json
+
+{
+  "name": "Science World Updated",
+  "description": "Interactive science museum in a geodesic dome."
+}
