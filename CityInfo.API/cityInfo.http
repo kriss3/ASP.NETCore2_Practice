@@ -1,0 +1,3 @@
+﻿### Get all cities
+GET https://localhost:5001/api/cities
+Accept: application/json
