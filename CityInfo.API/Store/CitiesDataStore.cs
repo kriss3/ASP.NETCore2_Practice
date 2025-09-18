@@ -127,7 +127,7 @@ public class CitiesDataStore
                     new PointOfInterestDto()
                     {
                         Id = 51,
-                        Name = "Holywood Sign",
+                        Name = "Hollywood Sign",
                         Description  = "The big sign on the side of the hill."
                     },
                     new PointOfInterestDto()
