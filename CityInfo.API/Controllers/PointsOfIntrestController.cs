@@ -18,6 +18,7 @@ public class PointsOfInterestController : Controller
 
         return Ok(foundCity.PointsOfInterest);
     }
+    
     [HttpGet("{cityId}/pointofinterest/{id}", Name = "GetPointOfInterest")]
     public IActionResult GetPointOfInterest(int cityId, int id)
     {
@@ -30,6 +31,7 @@ public class PointsOfInterestController : Controller
             return NotFound();
         return Ok(foundPointOfInterest);
     }
+    
     [HttpPost("{cityId}/pointsofinterest")]
     public IActionResult CreatePointOfInterest(int cityId, [FromBody] PointOfInterestForCreationDto pointOfInterest)
     {
