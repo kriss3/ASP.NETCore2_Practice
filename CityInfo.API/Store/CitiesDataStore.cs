@@ -19,13 +19,13 @@ public class CitiesDataStore
                 Description = "Rainy and cold, with mountains and beach.",
                 PointsOfInterest = new List<PointOfInterestDto>()
                 {
-                    new PointOfInterestDto()
+                    new()
                     {
                         Id = 1,
                         Name = "Science World",
                         Description = "Geodesic dome with interactive exibits."
                     },
-                    new PointOfInterestDto()
+                    new()
                     {
                         Id = 2,
                         Name = "Stanley Park",
@@ -59,9 +59,9 @@ public class CitiesDataStore
                 Id = 20,
                 Name = "New York",
                 Description = "The one with big park in the middle.",
-                PointsOfInterest = new List<PointOfInterestDto>()
-                {
-                    new PointOfInterestDto()
+                PointsOfInterest =
+				[
+					new PointOfInterestDto()
                     {
                         Id = 21,
                         Name = "Statue of Liberty",
@@ -73,7 +73,7 @@ public class CitiesDataStore
                         Name = "Time Square",
                         Description = "Place where everybody wants to takes a photo."
                     }
-                }
+                ]
             },
             new CityDto()
             {
