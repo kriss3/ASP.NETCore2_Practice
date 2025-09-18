@@ -1,5 +1,4 @@
 ﻿using CityInfo.API.Models;
-using System.Collections.Generic;
 
 namespace CityInfo.API.Store;
 
@@ -11,8 +10,8 @@ public class CitiesDataStore
     public CitiesDataStore()
     {
         Cities =
-			[
-				new CityDto()
+            [
+            new CityDto()
             {
                 Id = 0,
                 Name = "Vancouver",
@@ -80,9 +79,9 @@ public class CitiesDataStore
                 Id = 30,
                 Name = "Portland",
                 Description = "Lets keep Portland weird sign.",
-                PointsOfInterest = new List<PointOfInterestDto>()
-                {
-                    new PointOfInterestDto()
+                PointsOfInterest =
+				[
+					new PointOfInterestDto()
                     {
                         Id = 31,
                         Name = "Hoyt Arboretum",
@@ -94,7 +93,7 @@ public class CitiesDataStore
                         Name = "Pittock Mansion",
                         Description = "Museum shop with local flair.",
                     }
-                }
+                ]
             },
             new CityDto()
             {
