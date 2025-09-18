@@ -38,9 +38,9 @@ public class CitiesDataStore
                 Id = 10,
                 Name = "Warsaw",
                 Description = "Capital of Poland, a lot of sky scrapers.",
-                PointsOfInterest = new List<PointOfInterestDto>()
-                {
-                    new PointOfInterestDto()
+                PointsOfInterest =
+				[
+					new PointOfInterestDto()
                     {
                         Id = 11,
                         Name = "Copernicus Science Center",
@@ -52,7 +52,7 @@ public class CitiesDataStore
                         Name = "Warsaw Uprising Museum",
                         Description = "Place devoted to uprising of 1944."
                     }
-                }
+                ]
             },
             new CityDto()
             {
@@ -100,43 +100,43 @@ public class CitiesDataStore
             {
                 Id = 40,
                 Name = "Poznan",
-                Description = "Patato city, one of the largest in Poland.", 
-                PointsOfInterest = new List<PointOfInterestDto>()
-                {
-                    new PointOfInterestDto()
+                Description = "Potato city, one of the largest in Poland.", 
+                PointsOfInterest =
+				[
+					new PointOfInterestDto()
                     {
                         Id= 41,
                         Name = "Old Zoo",
-                        Description = "Place with plenty of animals keps in captivity."
+                        Description = "Place with plenty of animals kept in captivity."
                     },
                     new PointOfInterestDto()
                     {
                         Id= 42,
                         Name = "Royal Castle",
-                        Description = "Reconstructed, 13th centry castle."
+                        Description = "Reconstructed, 13th century castle."
                     }
-                }
+                ]
             },
             new CityDto()
             {
                 Id = 50,
                 Name = "Los Angeles",
                 Description = "The city of gangs, violence and Hollywood.", 
-                PointsOfInterest = new List<PointOfInterestDto>()
-                {
-                    new PointOfInterestDto()
+                PointsOfInterest =
+				[
+					new()
                     {
                         Id = 51,
                         Name = "Hollywood Sign",
                         Description  = "The big sign on the side of the hill."
                     },
-                    new PointOfInterestDto()
+                    new()
                     {
                         Id = 52,
                         Name = "Observation tower",
                         Description  = "The famous one from GTA V game."
                     }
-                }
+                ]
             }
         ];
     }
