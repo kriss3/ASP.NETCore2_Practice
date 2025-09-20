@@ -1,6 +1,6 @@
 ﻿namespace CityInfo.API.Application;
 
-public record CitySummeryDto(int Id, string Name, string? Description);
+public record CitySummaryDto(int Id, string Name, string? Description);
 
 public record CityDto(int Id, string Name, string? Description, IReadOnlyList<PointOfInterestDto> PointsOfInterest);
 
