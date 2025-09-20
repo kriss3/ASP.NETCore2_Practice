@@ -1,0 +1,10 @@
+flowchart LR
+    client["HTTP Client"] --> controller["Controller"]
+    controller -- "CreatePointOfInterestDto" --> service["CityInfoService"]
+    service --> repo["CityRepository"]
+    repo -- "returns City entity" --> service
+    service -- "dto.ToEntity()" --> poi["PointOfInterest entity"]
+    service --> repo
+    repo -- "Save" --> db["Database"]
+    service -- "poi.ToDto()" --> controller
+    controller -- "201 Created + PointOfInterestDto" --> client
