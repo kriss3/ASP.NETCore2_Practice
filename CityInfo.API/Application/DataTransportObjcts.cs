@@ -6,6 +6,8 @@ public record CityDto(int Id, string Name, string? Description, IReadOnlyList<Po
 
 public record PointOfInterestDto(int Id, string Name, string? Description);
 
+
+// Requests(never expose entities directly on input)
 public record CreatePointOfInterestDto(string Name, string? Description);
 
 public record UpdatePointOfInterestDto(string Name, string? Description);
