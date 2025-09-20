@@ -1,0 +1,9 @@
+### City Info APO
+Publicly avail API. 
+This is an upgrade project from ASP.NET API Core 2.2 to dotnet 9 WebApi.
+This is also an API I want to repurpose to adopt xUnit learning.
+xUnit recently released xUnit v3 and I want to use this opportunity to exlore this version + AutoFixture Library and explore the usage of FakeItEasy library.
+
+## Notes:
+First this first. Currently, contollers call directly types and function to store, retrieve and update objects from in-memory storage.
+I'm changing this to using proper services and DTOs to be able to fully take advantage of testing capabilities of AutoFixture/FakeItEasy.
