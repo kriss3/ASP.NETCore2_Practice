@@ -2,7 +2,7 @@
 
 namespace CityInfo.API.Models;
 
-public class PointOfInterestForUpdateDto
+public class PointOfInterestForUpdate
 {
 	[Required(ErrorMessage = "You should provide a name value.")]
 	[MaxLength(50)]

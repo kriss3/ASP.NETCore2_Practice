@@ -1,22 +1,23 @@
-﻿using CityInfo.API.Models;
+﻿using CityInfo.API.Data;
+using CityInfo.API.Models;
 
 namespace CityInfo.API.Store;
 
 public class CitiesDataStore
 {
     public static CitiesDataStore Current { get; }  = new CitiesDataStore();
-    public List<CityDto> Cities { get; set; }
+    public List<City> Cities { get; set; }
 
     public CitiesDataStore()
     {
         Cities =
             [
-            new CityDto()
+            new City()
             {
                 Id = 0,
                 Name = "Vancouver",
                 Description = "Rainy and cold, with mountains and beach.",
-                PointsOfInterest = new List<PointOfInterestDto>()
+                PointsOfInterest = new List<PointOfInterest>()
                 {
                     new()
                     {
@@ -32,20 +33,20 @@ public class CitiesDataStore
                     }
                 }
             },
-            new CityDto()
+            new City()
             {
                 Id = 10,
                 Name = "Warsaw",
                 Description = "Capital of Poland, a lot of sky scrapers.",
                 PointsOfInterest =
 				[
-					new PointOfInterestDto()
+					new PointOfInterest()
                     {
                         Id = 11,
                         Name = "Copernicus Science Center",
                         Description = "Science Center with interactive exibits."
                     },
-                    new PointOfInterestDto()
+                    new PointOfInterest()
                     {
                         Id = 12,
                         Name = "Warsaw Uprising Museum",
@@ -53,20 +54,20 @@ public class CitiesDataStore
                     }
                 ]
             },
-            new CityDto()
+            new City()
             {
                 Id = 20,
                 Name = "New York",
                 Description = "The one with big park in the middle.",
                 PointsOfInterest =
 				[
-					new PointOfInterestDto()
+					new PointOfInterest()
                     {
                         Id = 21,
                         Name = "Statue of Liberty",
                         Description = "French present, icon of New York harbor."
                     },
-                    new PointOfInterestDto()
+                    new PointOfInterest()
                     {
                         Id = 22,
                         Name = "Time Square",
@@ -74,20 +75,20 @@ public class CitiesDataStore
                     }
                 ]
             },
-            new CityDto()
+            new City()
             {
                 Id = 30,
                 Name = "Portland",
                 Description = "Lets keep Portland weird sign.",
                 PointsOfInterest =
 				[
-					new PointOfInterestDto()
+					new PointOfInterest()
                     {
                         Id = 31,
                         Name = "Hoyt Arboretum",
                         Description = "Tree garden with extensive hiking paths.",
                     },
-                    new PointOfInterestDto()
+                    new PointOfInterest()
                     {
                         Id = 32,
                         Name = "Pittock Mansion",
@@ -95,20 +96,20 @@ public class CitiesDataStore
                     }
                 ]
             },
-            new CityDto()
+            new City()
             {
                 Id = 40,
                 Name = "Poznan",
                 Description = "Potato city, one of the largest in Poland.", 
                 PointsOfInterest =
 				[
-					new PointOfInterestDto()
+					new PointOfInterest()
                     {
                         Id= 41,
                         Name = "Old Zoo",
                         Description = "Place with plenty of animals kept in captivity."
                     },
-                    new PointOfInterestDto()
+                    new PointOfInterest()
                     {
                         Id= 42,
                         Name = "Royal Castle",
@@ -116,7 +117,7 @@ public class CitiesDataStore
                     }
                 ]
             },
-            new CityDto()
+            new City()
             {
                 Id = 50,
                 Name = "Los Angeles",

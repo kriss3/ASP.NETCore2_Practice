@@ -1,4 +1,5 @@
-﻿using CityInfo.API.Models;
+﻿using CityInfo.API.Data;
+using CityInfo.API.Models;
 using CityInfo.API.Store;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +35,7 @@ public class PointsOfInterestController : Controller
     }
     
     [HttpPost("{cityId}/pointsofinterest")]
-    public IActionResult CreatePointOfInterest(int cityId, [FromBody] PointOfInterestForCreationDto pointOfInterest)
+    public IActionResult CreatePointOfInterest(int cityId, [FromBody] PointOfInterestForCreation pointOfInterest)
     {
         if (pointOfInterest == null)
         {
@@ -57,7 +58,7 @@ public class PointsOfInterestController : Controller
 
         var maxIdOfPointOfInterest = CitiesDataStore.Current.Cities.SelectMany(c => c.PointsOfInterest).Max(m => m.Id);
 
-        var finalPointOInterest = new PointOfInterestDto()
+        var finalPointOInterest = new PointOfInterest()
         {
             Id = ++maxIdOfPointOfInterest,
             Name = pointOfInterest.Name,
@@ -69,7 +70,7 @@ public class PointsOfInterestController : Controller
     }
 
     [HttpPut("{cityId}/pointsofinterest/{poiId}")]
-    public IActionResult UpdatePointOfInterest(int cityId, int poiId, [FromBody] PointOfInterestForUpdateDto pointOfInterest)
+    public IActionResult UpdatePointOfInterest(int cityId, int poiId, [FromBody] PointOfInterestForUpdate pointOfInterest)
     {
         if (pointOfInterest == null)
             return BadRequest();
