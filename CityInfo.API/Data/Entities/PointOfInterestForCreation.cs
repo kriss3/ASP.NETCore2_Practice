@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CityInfo.API.Data;
+namespace CityInfo.API.Data.Entities;
 
 public class PointOfInterestForCreation
 {

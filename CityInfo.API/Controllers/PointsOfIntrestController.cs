@@ -1,5 +1,5 @@
 ﻿using CityInfo.API.Data;
-using CityInfo.API.Data;
+using CityInfo.API.Data.Entities;
 using CityInfo.API.Store;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
