@@ -1,5 +1,12 @@
-﻿namespace CityInfo.API.Application;
+﻿using CityInfo.API.Data.Entities;
 
-public class ManualMappers
+namespace CityInfo.API.Application;
+
+public static class ManualMappers
 {
+	public static void Apply(this UpdatePointOfInterestDto dto, PointOfInterest entity)
+	{
+		entity.Name = dto.Name;
+		entity.Description = dto.Description ?? string.Empty;
+	}
 }
