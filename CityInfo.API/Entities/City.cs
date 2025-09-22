@@ -1,4 +1,4 @@
-﻿namespace CityInfo.API.Data.Entities;
+﻿namespace CityInfo.API.Entities;
 
 public class City
 {
