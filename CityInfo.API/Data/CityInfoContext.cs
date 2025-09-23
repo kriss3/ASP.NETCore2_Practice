@@ -1,11 +1,17 @@
 ﻿using CityInfo.API.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace CityInfo.API.Data;
 
-public class CityInfoContext(DbContextOptions<CityInfoContext> options) : object(options)
+// Fix: Inherit from DbContext, and call base(options) in the constructor.
+public class CityInfoContext(DbContextOptions<CityInfoContext> options) : DbContext(options)
 {
 	public DbSet<City> Cities => Set<City>();
-	public DbSet<PointOfInterest> PointsOfInterest => Set<PointOfInterest>();
+    public DbSet<PointOfInterest> PointsOfInterest => Set<PointOfInterest>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CityInfoContext).Assembly);
+        base.OnModelCreating(modelBuilder);
+    }
 }
