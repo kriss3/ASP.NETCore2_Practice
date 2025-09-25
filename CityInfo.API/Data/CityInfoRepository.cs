@@ -35,9 +35,10 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 		return result;
 	}
 
-	public Task AddPointAsync(City city, PointOfInterest point, CancellationToken ccancellationTokent)
+	public async Task AddPointAsync(City city, PointOfInterest point, CancellationToken ccancellationTokent)
 	{
-		throw new NotImplementedException();
+		city.PointsOfInterest.Add(point);
+		await Task.CompletedTask;
 	}
 
 	public void DeletePoint(PointOfInterest point)
