@@ -28,9 +28,11 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 			.FirstOrDefaultAsync(c => c.Id == cityId, cancellationToken);
 	}
 
-	public Task<PointOfInterest?> GetPointAsync(int cityId, int pointId, CancellationToken cancellationToken)
+	public async Task<PointOfInterest?> GetPointAsync(int cityId, int pointId, CancellationToken cancellationToken)
 	{
-		throw new NotImplementedException();
+		var result = await _context.PointsOfInterest
+			.FirstOrDefaultAsync(p => p.Id == cityId && p.Id == pointId, cancellationToken);
+		return result;
 	}
 
 	public Task AddPointAsync(City city, PointOfInterest point, CancellationToken ccancellationTokent)
