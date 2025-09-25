@@ -3,8 +3,10 @@ using CityInfo.API.Entities;
 
 namespace CityInfo.API.Data;
 
-public class CityInfoRepository : ICityInfoRepository
+public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 {
+	private readonly CityInfoContext _context = context;
+
 	public Task<IReadOnlyList<City>> GetCitiesAsync(CancellationToken cancellationToken)
 	{
 		throw new NotImplementedException();
