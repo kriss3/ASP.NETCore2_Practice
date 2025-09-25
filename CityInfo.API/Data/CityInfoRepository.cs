@@ -18,7 +18,14 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 
 	public async Task<City?> GetCityAsync(int cityId, bool includePointsOfInterest, CancellationToken cancellationToken)
 	{
-		throw new NotImplementedException();
+		if (includePointsOfInterest)
+		{
+			return await _context.Cities
+				.Include(c => c.PointsOfInterest)
+				.FirstOrDefaultAsync(c => c.Id == cityId, cancellationToken);
+		}
+		return await _context.Cities
+			.FirstOrDefaultAsync(c => c.Id == cityId, cancellationToken);
 	}
 
 	public Task<PointOfInterest?> GetPointAsync(int cityId, int pointId, CancellationToken cancellationToken)
