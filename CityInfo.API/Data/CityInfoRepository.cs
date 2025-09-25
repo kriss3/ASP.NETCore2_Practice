@@ -1,5 +1,6 @@
 ﻿using CityInfo.API.Application;
 using CityInfo.API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityInfo.API.Data;
 
@@ -7,12 +8,15 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 {
 	private readonly CityInfoContext _context = context;
 
-	public Task<IReadOnlyList<City>> GetCitiesAsync(CancellationToken cancellationToken)
+	public async Task<IReadOnlyList<City>> GetCitiesAsync(CancellationToken cancellationToken)
 	{
-		throw new NotImplementedException();
+		var result = await _context.Cities
+			.OrderBy(c => c.Name)
+			.ToListAsync(cancellationToken);
+		return result;
 	}
 
-	public Task<City?> GetCityAsync(int cityId, bool includePointsOfInterest, CancellationToken cancellationToken)
+	public async Task<City?> GetCityAsync(int cityId, bool includePointsOfInterest, CancellationToken cancellationToken)
 	{
 		throw new NotImplementedException();
 	}
