@@ -1,5 +1,37 @@
-﻿namespace CityInfo.API.Data;
+﻿using CityInfo.API.Application;
+using CityInfo.API.Entities;
 
-public class CityInfoRepository
+namespace CityInfo.API.Data;
+
+public class CityInfoRepository : ICityInfoRepository
 {
+	public Task AddPointAsync(City city, PointOfInterest point, CancellationToken ccancellationTokent)
+	{
+		throw new NotImplementedException();
+	}
+
+	public void DeletePoint(PointOfInterest point)
+	{
+		throw new NotImplementedException();
+	}
+
+	public Task<IReadOnlyList<City>> GetCitiesAsync(CancellationToken cancellationToken)
+	{
+		throw new NotImplementedException();
+	}
+
+	public Task<City?> GetCityAsync(int cityId, bool includePointsOfInterest, CancellationToken cancellationToken)
+	{
+		throw new NotImplementedException();
+	}
+
+	public Task<PointOfInterest?> GetPointAsync(int cityId, int pointId, CancellationToken cancellationToken)
+	{
+		throw new NotImplementedException();
+	}
+
+	public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+	{
+		throw new NotImplementedException();
+	}
 }
