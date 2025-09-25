@@ -41,9 +41,10 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 		await Task.CompletedTask;
 	}
 
-	public void DeletePoint(PointOfInterest point)
+	public async Task DeletePoint(PointOfInterest point)
 	{
-		throw new NotImplementedException();
+		var result = Task.FromResult(() => _context.PointsOfInterest.Remove(point));
+		await result;
 	}
 
 	public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
