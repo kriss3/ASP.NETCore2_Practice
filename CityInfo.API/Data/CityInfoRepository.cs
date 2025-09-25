@@ -47,8 +47,9 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 		await result;
 	}
 
-	public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+	public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
 	{
-		throw new NotImplementedException();
+		var result = await _context.SaveChangesAsync(cancellationToken);
+		return result;
 	}
 }

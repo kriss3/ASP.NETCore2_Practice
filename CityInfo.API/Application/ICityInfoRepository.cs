@@ -9,7 +9,7 @@ public interface ICityInfoRepository
 
 	Task<PointOfInterest?> GetPointAsync(int cityId, int pointId, CancellationToken cancellationToken);
 	Task AddPointAsync(City city, PointOfInterest point, CancellationToken ccancellationTokent);
-	void DeletePoint(PointOfInterest point);
+	Task DeletePoint(PointOfInterest point);
 
 	Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
