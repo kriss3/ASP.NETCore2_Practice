@@ -9,9 +9,9 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 
 	public async Task<IReadOnlyList<CitySummaryDto>> GetCitiesAsync(CancellationToken cancellationToken)
 	{
-		
-
-
+		var cities = await _repo.GetCitiesAsync(cancellationToken);
+		// map entities -> summary DTOs
+		return cities.Select(c => c.ToSummaryDto()).ToList();
 	}
 
 
