@@ -16,7 +16,10 @@ public static class CityInfoServiceExtensions
 				.Select(p => p.ToDto()).ToList());
 	}
 
-	public static PointOfInterestDto ToDto(this PointOfInterest p) { }
+	public static PointOfInterestDto ToDto(this PointOfInterest p) 
+	{
+		return new(p.Id, p.Name, p.Description);
+	}
 
 	public static PointOfInterest ToEntity(this CreatePointOfInterestDto dto) { }
 
