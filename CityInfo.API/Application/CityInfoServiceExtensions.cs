@@ -21,7 +21,10 @@ public static class CityInfoServiceExtensions
 		return new(p.Id, p.Name, p.Description);
 	}
 
-	public static PointOfInterest ToEntity(this CreatePointOfInterestDto dto) { }
+	public static PointOfInterest ToEntity(this CreatePointOfInterestDto dto) 
+	{
+		return new() { Name = dto.Name, Description = dto.Description };
+	}
 
 	public static void Apply(this UpdatePointOfInterestDto dto, PointOfInterest entity) { }
 }
