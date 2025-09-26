@@ -12,8 +12,7 @@ public static class CityInfoServiceExtensions
 	public static CityDto ToDto(this City c) 
 	{
 		return new(c.Id, c.Name, c.Description,
-			(c.PointsOfInterest ?? new List<PointOfInterest>())
-				.Select(p => p.ToDto()).ToList());
+			[.. (c.PointsOfInterest ?? []).Select(p => p.ToDto())]);
 	}
 
 	public static PointOfInterestDto ToDto(this PointOfInterest p) 
@@ -26,6 +25,10 @@ public static class CityInfoServiceExtensions
 		return new() { Name = dto.Name, Description = dto.Description };
 	}
 
-	public static void Apply(this UpdatePointOfInterestDto dto, PointOfInterest entity) { }
+	public static void Apply(this UpdatePointOfInterestDto dto, PointOfInterest entity) 
+	{
+		entity.Name = dto.Name;
+		entity.Description = dto.Description;
+	}
 }
 
