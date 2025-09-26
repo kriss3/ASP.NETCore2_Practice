@@ -29,11 +29,11 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 
 	public Task<CityDto?> GetCityAsync(int cityId, bool includePointsOfInterest, CancellationToken cancellationToken)
 	{
-		throw new NotImplementedException();
+		
 	}
 
 	public Task<bool> UpdatePointOfInterestAsync(int cityId, int pointOfInterestId, UpdatePointOfInterestDto input, CancellationToken cancellationToken)
 	{
-		throw new NotImplementedException();
+		
 	}
 }
