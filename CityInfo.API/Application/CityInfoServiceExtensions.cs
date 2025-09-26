@@ -22,13 +22,17 @@ public static class CityInfoServiceExtensions
 
 	public static PointOfInterest ToEntity(this CreatePointOfInterestDto dto) 
 	{
-		return new() { Name = dto.Name, Description = dto.Description };
+		return new() 
+		{ 
+			Name = dto.Name ?? string.Empty, 
+			Description = dto.Description ?? string.Empty 
+		};
 	}
 
 	public static void Apply(this UpdatePointOfInterestDto dto, PointOfInterest entity) 
 	{
 		entity.Name = dto.Name;
-		entity.Description = dto.Description;
+		entity.Description = dto.Description ?? string.Empty;
 	}
 }
 
