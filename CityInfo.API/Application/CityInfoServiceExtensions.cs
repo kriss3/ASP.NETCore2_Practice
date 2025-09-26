@@ -4,7 +4,10 @@ namespace CityInfo.API.Application;
 
 public static class CityInfoServiceExtensions
 {
-	public static CitySummaryDto ToSummaryDto(this City c) { }
+	public static CitySummaryDto ToSummaryDto(this City c) 
+	{
+		return new(c.Id, c.Name, c.Description);
+	}
 
 	public static CityDto ToDto(this City c) { }
 
