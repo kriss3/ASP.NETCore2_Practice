@@ -35,9 +35,7 @@ WebApplication app = builder.Build();
 
 // Configure the HTTP request pipe-line
 if (app.Environment.IsDevelopment())
-{
 	app.UseDeveloperExceptionPage();
-}
 else
 	app.UseExceptionHandler("/Error");
 
