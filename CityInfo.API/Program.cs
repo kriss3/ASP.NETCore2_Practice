@@ -14,6 +14,7 @@ builder.Services.AddCors(options => {
 });
 
 builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
+builder.Services.AddScoped<ICityInfoService, CityInfoService>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => 
