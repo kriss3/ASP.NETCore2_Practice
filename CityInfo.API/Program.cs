@@ -1,4 +1,7 @@
 ﻿
+using CityInfo.API.Application;
+using CityInfo.API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Adding Services.
@@ -9,6 +12,8 @@ builder.Services.AddCors(options => {
 		.AllowAnyMethod()
 		.AllowAnyHeader());
 });
+
+builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options => 
