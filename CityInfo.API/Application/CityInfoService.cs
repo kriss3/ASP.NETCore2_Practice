@@ -48,6 +48,11 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 
 	public async Task<bool> DeletePointOfInterestAsync(int cityId, int pointOfInterestId, CancellationToken cancellationToken)
 	{
-		
+		var poi = await _repo.GetPointAsync(cityId, pointOfInterestId, cancellationToken);
+		if (poi is null) 
+			return false;
+		await _repo.DeletePoint(poi);
+		await _repo.SaveChangesAsync(cancellationToken);
+		return true;
 	}
 }
