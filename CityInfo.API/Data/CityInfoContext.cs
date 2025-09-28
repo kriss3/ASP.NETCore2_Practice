@@ -11,7 +11,6 @@ public class CityInfoContext(DbContextOptions<CityInfoContext> options) : DbCont
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CityInfoContext).Assembly);
         base.OnModelCreating(modelBuilder);
     }
 }
