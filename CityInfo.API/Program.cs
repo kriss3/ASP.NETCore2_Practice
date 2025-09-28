@@ -31,11 +31,13 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.WriteIndented = true; // Pretty print (optional)
     });
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipe-line
 if (app.Environment.IsDevelopment())
+{
 	app.UseDeveloperExceptionPage();
+}
 else
 	app.UseExceptionHandler("/Error");
 
@@ -54,6 +56,8 @@ app.MapFallback(async context =>
 	await context.Response.WriteAsync(message);
 });
 
+await SeedCityInfoDb(app);
+
 app.Run();
 
 static string DoSomething()
@@ -64,4 +68,12 @@ static string DoSomething()
 		   $"    Use Postman to interrogate this API. <br/></p>" +
 		   $"    CORS Implemented." +
 		   $"</div>";
+}
+
+static async Task SeedCityInfoDb(WebApplication app) 
+{
+	using var scope = app.Services.CreateScope();
+	var db = scope.ServiceProvider.GetRequiredService<CityInfoContext>();
+	await db.Database.MigrateAsync();             // apply migrations
+	await CityInfoSeeder.SeedAsync(db);          
 }
