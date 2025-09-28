@@ -35,16 +35,18 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 		await _repo.SaveChangesAsync(cancellationToken);
 		return poi.ToDto();
 	}
-
-	public Task<bool> DeletePointOfInterestAsync(int cityId, int pointOfInterestId, CancellationToken cancellationToken)
+	public async Task<bool> UpdatePointOfInterestAsync(int cityId, int pointOfInterestId, UpdatePointOfInterestDto input, CancellationToken cancellationToken)
 	{
-		
+		var poi = await _repo.GetPointAsync(cityId, pointOfInterestId, cancellationToken);
+		if (poi is null) 
+			return false;
+
+		input.Apply(poi);
+		await _repo.SaveChangesAsync(cancellationToken);
+		return true;
 	}
 
-	
-
-
-	public Task<bool> UpdatePointOfInterestAsync(int cityId, int pointOfInterestId, UpdatePointOfInterestDto input, CancellationToken cancellationToken)
+	public async Task<bool> DeletePointOfInterestAsync(int cityId, int pointOfInterestId, CancellationToken cancellationToken)
 	{
 		
 	}
