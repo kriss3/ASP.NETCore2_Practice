@@ -72,5 +72,9 @@ static async Task SeedCityInfoDb(WebApplication app)
 {
 	using var scope = app.Services.CreateScope();
 	var db = scope.ServiceProvider.GetRequiredService<CityInfoContext>();
-	await CityInfoSeeder.SeedAsync(db);          
+
+	if (app.Environment.IsDevelopment())
+	{
+		await CityInfoSeeder.SeedAsync(db);
+	}
 }
