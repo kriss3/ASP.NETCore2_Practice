@@ -23,8 +23,15 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 
 	public async Task<PointOfInterestDto?>  AddPointOfInterestAsync(int cityId, CreatePointOfInterestDto input, CancellationToken cancellationToken)
 	{
+		//to add first attempt to get it:
+		var city = await _repo.GetCityAsync(cityId, includePointsOfInterest: true, cancellationToken);
+		if (city is null) 
+			return null;
 
-
+		var poi = input.ToEntity(); // get POI in a form of DTO
+		await _repo.AddPointAsync(city, poi, cancellationToken);
+		await _repo.SaveChangesAsync(cancellationToken);
+		return poi.ToDto();
 	}
 
 	public Task<bool> DeletePointOfInterestAsync(int cityId, int pointOfInterestId, CancellationToken cancellationToken)
