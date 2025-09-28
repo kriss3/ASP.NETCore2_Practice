@@ -1,5 +1,6 @@
 ﻿
 using CityInfo.API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CityInfo.API.Application;
 
@@ -14,10 +15,16 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 		return [.. cities.Select(c => c.ToSummaryDto())];
 	}
 
+	public async Task<CityDto?> GetCityAsync(int cityId, bool includePointsOfInterest, CancellationToken cancellationToken)
+	{
+
+
+	}
 
 	public async Task<PointOfInterestDto?>  AddPointOfInterestAsync(int cityId, CreatePointOfInterestDto input, CancellationToken cancellationToken)
 	{
-		
+
+
 	}
 
 	public Task<bool> DeletePointOfInterestAsync(int cityId, int pointOfInterestId, CancellationToken cancellationToken)
@@ -27,10 +34,6 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 
 	
 
-	public Task<CityDto?> GetCityAsync(int cityId, bool includePointsOfInterest, CancellationToken cancellationToken)
-	{
-		
-	}
 
 	public Task<bool> UpdatePointOfInterestAsync(int cityId, int pointOfInterestId, UpdatePointOfInterestDto input, CancellationToken cancellationToken)
 	{
