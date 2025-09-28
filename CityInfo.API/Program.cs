@@ -1,6 +1,8 @@
 ﻿
 using CityInfo.API.Application;
 using CityInfo.API.Data;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,12 @@ builder.Services.AddCors(options => {
 		.AllowAnyMethod()
 		.AllowAnyHeader());
 });
+
+
+builder.Services.AddDbContext<CityInfoContext>(options => {
+	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 
 builder.Services.AddScoped<ICityInfoRepository, CityInfoRepository>();
 builder.Services.AddScoped<ICityInfoService, CityInfoService>();
