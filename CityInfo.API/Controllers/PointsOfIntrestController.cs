@@ -36,13 +36,14 @@ public class PointsOfInterestController : Controller
     [HttpPost("{cityId}/pointsofinterest")]
     public IActionResult CreatePointOfInterest(int cityId, [FromBody] PointOfInterestForCreation pointOfInterest)
     {
-        if (pointOfInterest == null)
-        {
-            BadRequest();
-        }
+        if (pointOfInterest is null)
+            return BadRequest();
 
-        if (pointOfInterest.Description.Equals(pointOfInterest.Name))
+        if (pointOfInterest.Description != null && pointOfInterest.Name != null &&
+            pointOfInterest.Description.Equals(pointOfInterest.Name))
+        {
             ModelState.AddModelError("Description", "Description should be different from the name.");
+        }
 
         if (!ModelState.IsValid)
         {
@@ -52,7 +53,7 @@ public class PointsOfInterestController : Controller
         var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
         if (foundCity == null)
         {
-            NotFound();
+            return NotFound();
         }
 
         var maxIdOfPointOfInterest = CitiesDataStore.Current.Cities.SelectMany(c => c.PointsOfInterest).Max(m => m.Id);
@@ -60,8 +61,8 @@ public class PointsOfInterestController : Controller
         var finalPointOInterest = new PointOfInterest()
         {
             Id = ++maxIdOfPointOfInterest,
-            Name = pointOfInterest.Name,
-            Description = pointOfInterest.Description
+            Name = pointOfInterest.Name ?? string.Empty,
+            Description = pointOfInterest.Description ?? string.Empty
         };
 
         foundCity.PointsOfInterest.Add(finalPointOInterest);
@@ -82,10 +83,11 @@ public class PointsOfInterestController : Controller
 
         var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
         if (foundCity == null)
-            NotFound();
+            return NotFound();
+
         var poi = foundCity.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
         if (poi == null)
-            NotFound();
+            return NotFound();
 
         poi.Name = pointOfInterest.Name;
         poi.Description = pointOfInterest.Description;
