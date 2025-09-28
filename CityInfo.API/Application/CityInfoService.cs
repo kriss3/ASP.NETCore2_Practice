@@ -17,8 +17,8 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 
 	public async Task<CityDto?> GetCityAsync(int cityId, bool includePointsOfInterest, CancellationToken cancellationToken)
 	{
-
-
+		var city = await _repo.GetCityAsync(cityId, includePointsOfInterest, cancellationToken);
+		return city?.ToDto();
 	}
 
 	public async Task<PointOfInterestDto?>  AddPointOfInterestAsync(int cityId, CreatePointOfInterestDto input, CancellationToken cancellationToken)
