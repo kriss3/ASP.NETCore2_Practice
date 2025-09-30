@@ -112,9 +112,12 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
     }
 
     [HttpDelete("{cityId}/pointsofinterest/{poiId}")]
-    public IActionResult DeletePointOfInterest(int cityId, int poiId)
+    public async Task<IActionResult> DeletePointOfInterest(int cityId, int poiId)
     {
-        var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+        var foundCity = await _cityInfoService.GetCityAsync(cityId, true, CancellationToken.None);
+
+        
         if (foundCity == null)
             return NotFound();
 
