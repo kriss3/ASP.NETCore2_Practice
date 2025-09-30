@@ -27,4 +27,8 @@ public class CitiesController(ICityInfoService cityInfoService) : Controller
             return NotFound();
         return Ok(foundCity);
     }
-}
+
+    [HttpPost]
+    public async Task<IActionResult> CreateCity([FromBody] CityForCreation cityForCreation)
+    { }
+	}
