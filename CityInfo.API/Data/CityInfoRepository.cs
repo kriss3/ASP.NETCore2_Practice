@@ -28,10 +28,11 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 			.FirstOrDefaultAsync(c => c.Id == cityId, cancellationToken);
 	}
 
-	public async Task<City> AddCityAsync(City city, CancellationToken cancellationToken) { }
-
-
-
+	public async Task<City> AddCityAsync(City city, CancellationToken cancellationToken) 
+	{
+		var result = await _context.Cities.AddAsync(city, cancellationToken);
+		return result.Entity;
+	}
 
 	public async Task<PointOfInterest?> GetPointAsync(int cityId, int pointId, CancellationToken cancellationToken)
 	{
@@ -48,8 +49,9 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 
 	public async Task DeletePoint(PointOfInterest point)
 	{
-		var result = Task.FromResult(() => _context.PointsOfInterest.Remove(point));
-		await result;
+		_context.PointsOfInterest.Add(point);
+		await Task.CompletedTask;
+
 	}
 
 	public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
