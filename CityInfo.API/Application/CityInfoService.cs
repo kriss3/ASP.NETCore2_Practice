@@ -21,7 +21,20 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 	}
 
 	public async Task<CityDto?> AddCityAsync(CreateCityDto input, CancellationToken cancellationToken)
-	{ }
+	{
+		// Convert DTO to entity
+		var city = input.ToEntity();
+
+		// Add to repository
+		var addedCity = await _repo.AddCityAsync(city, cancellationToken);
+
+		// Save changes
+		await _repo.SaveChangesAsync(cancellationToken);
+
+		// Return the created city as DTO
+		return addedCity.ToDto();
+
+	}
 
 
 	public async Task<PointOfInterestDto?>  AddPointOfInterestAsync(

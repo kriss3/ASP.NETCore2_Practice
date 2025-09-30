@@ -15,6 +15,15 @@ public static class CityInfoServiceExtensions
 			[.. (c.PointsOfInterest ?? []).Select(p => p.ToDto())]);
 	}
 
+	public static City ToEntity(this CreateCityDto dto) 
+	{
+		return new() 
+		{ 
+			Name = dto.Name ?? string.Empty, 
+			Description = dto.Description ?? string.Empty 
+		};
+	}	
+
 	public static PointOfInterestDto ToDto(this PointOfInterest p) 
 	{
 		return new(p.Id, p.Name, p.Description);
