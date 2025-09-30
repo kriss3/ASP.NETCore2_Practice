@@ -10,28 +10,28 @@ namespace CityInfo.API.Controllers;
 [EnableCors("AllowOrigin")]
 public class CitiesController(ICityInfoService cityInfoService) : Controller
 {
-    private readonly ICityInfoService _cityInfoService = 
-        cityInfoService ?? throw new ArgumentNullException(nameof(cityInfoService));
+	private readonly ICityInfoService _cityInfoService =
+		cityInfoService ?? throw new ArgumentNullException(nameof(cityInfoService));
 
 	[HttpGet()]
-    public async Task<IActionResult> GetCities()
-    {
+	public async Task<IActionResult> GetCities()
+	{
 		var cities = await _cityInfoService.GetCitiesAsync(CancellationToken.None);
 		return Ok(cities);
 	}
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetCity(int id)
-    {
-        var foundCity = await _cityInfoService.GetCityAsync(id, false, CancellationToken.None);
+	[HttpGet("{id}")]
+	public async Task<IActionResult> GetCity(int id)
+	{
+		var foundCity = await _cityInfoService.GetCityAsync(id, false, CancellationToken.None);
 		if (foundCity == null)
-            return NotFound();
-        return Ok(foundCity);
-    }
+			return NotFound();
+		return Ok(foundCity);
+	}
 
-    [HttpPost]
-    public async Task<IActionResult> CreateCity([FromBody] CityForCreation cityForCreation)
-    {
+	[HttpPost]
+	public async Task<IActionResult> CreateCity([FromBody] CityForCreation cityForCreation)
+	{
 		if (cityForCreation is null)
 			return BadRequest();
 
@@ -47,5 +47,11 @@ public class CitiesController(ICityInfoService cityInfoService) : Controller
 		// Use the service to add the city
 		var createdCity = await _cityInfoService.AddCityAsync(createCityDto, CancellationToken.None);
 
+		if (createdCity == null)
 
+			return BadRequest("Failed to create city.");
+
+		// Return 201 Created with location header
+		return CreatedAtAction(nameof(GetCity), new { id = createdCity.Id }, createdCity);
 	}
+}
