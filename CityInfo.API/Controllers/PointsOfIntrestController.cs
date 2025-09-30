@@ -90,7 +90,6 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
         var foundCity = await _cityInfoService.GetCityAsync(cityId, true, CancellationToken.None);
 
 		if (foundCity == null)
