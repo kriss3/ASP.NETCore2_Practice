@@ -100,8 +100,6 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
         if (poi == null)
             return NotFound();
 
-        //poi.Name = pointOfInterest.Name;
-        //poi.Description = pointOfInterest.Description;
         var updatePointOfInterestDto = new UpdatePointOfInterestDto(
             pointOfInterest.Name ?? string.Empty, 
             pointOfInterest.Description ?? string.Empty);
@@ -114,10 +112,8 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
     [HttpDelete("{cityId}/pointsofinterest/{poiId}")]
     public async Task<IActionResult> DeletePointOfInterest(int cityId, int poiId)
     {
-        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
         var foundCity = await _cityInfoService.GetCityAsync(cityId, false, CancellationToken.None);
 
-        
         if (foundCity == null)
             return NotFound();
 
