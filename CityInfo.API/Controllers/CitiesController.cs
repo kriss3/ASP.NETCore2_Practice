@@ -2,6 +2,7 @@
 //using CityInfo.API.Store;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace CityInfo.API.Controllers;
 
@@ -22,11 +23,12 @@ public class CitiesController(ICityInfoService cityInfoService) : Controller
 	}
 
     [HttpGet("{id}")]
-    public IActionResult GetCity(int id)
+    public async Task<IActionResult> GetCity(int id)
     {
         //find city;
-        var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c=>c.Id == id);
-        if (foundCity == null)
+        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c=>c.Id == id);
+        var foundCity = await _cityInfoService.GetCityAsync(id, false, CancellationToken.None);
+		if (foundCity == null)
             return NotFound();
         return Ok(foundCity);
     }
