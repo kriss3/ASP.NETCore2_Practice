@@ -78,12 +78,8 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
 		return CreatedAtRoute("GetPointOfInterest", new { cityId, id = createdPointOfInterest.Id }, createdPointOfInterest);
 	}
 
-
-
-
-
 	[HttpPut("{cityId}/pointsofinterest/{poiId}")]
-    public IActionResult UpdatePointOfInterest(int cityId, int poiId, [FromBody] PointOfInterestForUpdate pointOfInterest)
+    public async Task<IActionResult> UpdatePointOfInterest(int cityId, int poiId, [FromBody] PointOfInterestForUpdate pointOfInterest)
     {
         if (pointOfInterest == null)
             return BadRequest();
@@ -94,18 +90,25 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-        if (foundCity == null)
+        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+        var foundCity = await _cityInfoService.GetCityAsync(cityId, true, CancellationToken.None);
+
+		if (foundCity == null)
             return NotFound();
 
         var poi = foundCity.PointsOfInterest.FirstOrDefault(p => p.Id == poiId);
         if (poi == null)
             return NotFound();
 
-        poi.Name = pointOfInterest.Name;
-        poi.Description = pointOfInterest.Description;
+        //poi.Name = pointOfInterest.Name;
+        //poi.Description = pointOfInterest.Description;
+        var updatePointOfInterestDto = new UpdatePointOfInterestDto(
+            pointOfInterest.Name ?? string.Empty, 
+            pointOfInterest.Description ?? string.Empty);
 
-        return NoContent(); //204 => can also return 200OK and pass updated resource;
+        await _cityInfoService.UpdatePointOfInterestAsync(cityId, poiId, updatePointOfInterestDto, CancellationToken.None);
+
+		return NoContent(); //204 => can also return 200OK and pass updated resource;
     }
 
     [HttpDelete("{cityId}/pointsofinterest/{poiId}")]
