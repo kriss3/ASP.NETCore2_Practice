@@ -20,6 +20,10 @@ public class CityInfoService(ICityInfoRepository repo) : ICityInfoService
 		return city?.ToDto();
 	}
 
+	public async Task<CityDto?> AddCityAsync(CreateCityDto input, CancellationToken cancellationToken)
+	{ }
+
+
 	public async Task<PointOfInterestDto?>  AddPointOfInterestAsync(
 		int cityId, 
 		CreatePointOfInterestDto input, 
