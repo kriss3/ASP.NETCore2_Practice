@@ -39,44 +39,54 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
             return NotFound();
         return Ok(foundPointOfInterest);
     }
-    
-    [HttpPost("{cityId}/pointsofinterest")]
-    public IActionResult CreatePointOfInterest(int cityId, [FromBody] PointOfInterestForCreation pointOfInterest)
-    {
-        if (pointOfInterest is null)
-            return BadRequest();
 
-        if (pointOfInterest.Description != null && pointOfInterest.Name != null &&
-            pointOfInterest.Description.Equals(pointOfInterest.Name))
-        {
-            ModelState.AddModelError("Description", "Description should be different from the name.");
-        }
+	[HttpPost("{cityId}/pointsofinterest")]
+	public async Task<IActionResult> CreatePointOfInterest(int cityId, [FromBody] PointOfInterestForCreation pointOfInterest)
+	{
+		if (pointOfInterest is null)
+			return BadRequest();
 
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
+		if (pointOfInterest.Description != null && pointOfInterest.Name != null &&
+			pointOfInterest.Description.Equals(pointOfInterest.Name))
+		{
+			ModelState.AddModelError("Description", "Description should be different from the name.");
+		}
 
-        var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-        if (foundCity == null)
-        {
-            return NotFound();
-        }
+		if (!ModelState.IsValid)
+		{
+			return BadRequest(ModelState);
+		}
 
-        var maxIdOfPointOfInterest = CitiesDataStore.Current.Cities.SelectMany(c => c.PointsOfInterest).Max(m => m.Id);
+		var foundCity = await _cityInfoService.GetCityAsync(cityId, false, CancellationToken.None);
+		if (foundCity == null)
+		{
+			return NotFound();
+		}
 
-        var finalPointOInterest = new PointOfInterest()
-        {
-            Id = ++maxIdOfPointOfInterest,
-            Name = pointOfInterest.Name ?? string.Empty,
-            Description = pointOfInterest.Description ?? string.Empty
-        };
+        // Create the DTO for the service
+        var createPointOfInterestDto = new CreatePointOfInterestDto(
+            pointOfInterest.Name ?? string.Empty, 
+            pointOfInterest.Description ?? string.Empty);
 
-        foundCity.PointsOfInterest.Add(finalPointOInterest);
-        return CreatedAtRoute("GetPointOfInterest", new { cityId, id = finalPointOInterest.Id }, finalPointOInterest);
-    }
+		// Use the service to add the point of interest
+		var createdPointOfInterest = await _cityInfoService.AddPointOfInterestAsync(
+            cityId, 
+            createPointOfInterestDto, 
+            CancellationToken.None);
 
-    [HttpPut("{cityId}/pointsofinterest/{poiId}")]
+		if (createdPointOfInterest == null)
+		{
+			return BadRequest("Failed to create point of interest.");
+		}
+
+		return CreatedAtRoute("GetPointOfInterest", new { cityId, id = createdPointOfInterest.Id }, createdPointOfInterest);
+	}
+
+
+
+
+
+	[HttpPut("{cityId}/pointsofinterest/{poiId}")]
     public IActionResult UpdatePointOfInterest(int cityId, int poiId, [FromBody] PointOfInterestForUpdate pointOfInterest)
     {
         if (pointOfInterest == null)
