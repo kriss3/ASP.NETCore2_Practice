@@ -1,20 +1,26 @@
-﻿using CityInfo.API.Entities;
-using CityInfo.API.Store;
+﻿using CityInfo.API.Application;
+using CityInfo.API.Entities;
+//using CityInfo.API.Store;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+//using System.Threading.Tasks;
 
 namespace CityInfo.API.Controllers;
 
 [Route("/api/cities")]
 [ApiController]
 [EnableCors("AllowOrigin")]
-public class PointsOfInterestController : Controller
+public class PointsOfInterestController(ICityInfoService cityInfoService) : Controller
 {
-    [HttpGet("{cityId}/pointsofinterest")]
-    public IActionResult GetPointsOfInterest(int cityId)
+	private readonly ICityInfoService _cityInfoService =
+		cityInfoService ?? throw new ArgumentNullException(nameof(cityInfoService));
+
+	[HttpGet("{cityId}/pointsofinterest")]
+    public async Task<IActionResult> GetPointsOfInterest(int cityId)
     {
-        var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-        if (foundCity == null)
+        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+        var foundCity = await _cityInfoService.GetCityAsync(cityId, true, CancellationToken.None);
+		if (foundCity == null)
             return NotFound();
 
         return Ok(foundCity.PointsOfInterest);
