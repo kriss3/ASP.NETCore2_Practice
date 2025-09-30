@@ -30,5 +30,17 @@ public class CitiesController(ICityInfoService cityInfoService) : Controller
 
     [HttpPost]
     public async Task<IActionResult> CreateCity([FromBody] CityForCreation cityForCreation)
-    { }
+    {
+		if (cityForCreation is null)
+			return BadRequest();
+
+		// Validate model
+		if (!ModelState.IsValid)
+			return BadRequest(ModelState);
+
+		// Create the DTO for the service
+		var createCityDto = new CreateCityDto(
+			cityForCreation.Name ?? string.Empty,
+			cityForCreation.Description ?? string.Empty);
+
 	}
