@@ -3,15 +3,15 @@ GET https://localhost:5001/api/cities
 Accept: application/json
 
 ### Get a specific city (Vancouver - ID 0)
-GET https://localhost:5001/api/cities/0
+GET https://localhost:5001/api/cities/1
 Accept: application/json
 
 ### Get points of interest for Vancouver
-GET https://localhost:5001/api/cities/0/pointsofinterest
+GET https://localhost:5001/api/cities/1/pointsofinterest
 Accept: application/json
 
 ### Get a specific point of interest
-GET https://localhost:5001/api/cities/0/pointofinterest/1
+GET https://localhost:5001/api/cities/1/pointofinterest/1
 Accept: application/json
 
 ### Create a new point of interest
