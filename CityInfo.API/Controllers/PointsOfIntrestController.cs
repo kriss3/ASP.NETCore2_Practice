@@ -1,9 +1,7 @@
 ﻿using CityInfo.API.Application;
 using CityInfo.API.Entities;
-//using CityInfo.API.Store;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-//using System.Threading.Tasks;
 
 namespace CityInfo.API.Controllers;
 
@@ -18,7 +16,6 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
 	[HttpGet("{cityId}/pointsofinterest")]
     public async Task<IActionResult> GetPointsOfInterest(int cityId)
     {
-        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
         var foundCity = await _cityInfoService.GetCityAsync(cityId, true, CancellationToken.None);
 		if (foundCity == null)
             return NotFound();
@@ -29,7 +26,6 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
     [HttpGet("{cityId}/pointofinterest/{id}", Name = "GetPointOfInterest")]
     public async Task<IActionResult> GetPointOfInterest(int cityId, int id)
     {
-        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
         var foundCity = await _cityInfoService.GetCityAsync(cityId, true, CancellationToken.None);
 		if (foundCity == null)
             return NotFound();
