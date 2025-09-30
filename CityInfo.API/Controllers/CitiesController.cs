@@ -1,4 +1,5 @@
 ﻿using CityInfo.API.Application;
+using CityInfo.API.Entities;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,5 +43,9 @@ public class CitiesController(ICityInfoService cityInfoService) : Controller
 		var createCityDto = new CreateCityDto(
 			cityForCreation.Name ?? string.Empty,
 			cityForCreation.Description ?? string.Empty);
+
+		// Use the service to add the city
+		var createdCity = await _cityInfoService.AddCityAsync(createCityDto, CancellationToken.None);
+
 
 	}
