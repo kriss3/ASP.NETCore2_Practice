@@ -28,6 +28,11 @@ public class CityInfoRepository(CityInfoContext context) : ICityInfoRepository
 			.FirstOrDefaultAsync(c => c.Id == cityId, cancellationToken);
 	}
 
+	public async Task<City> AddCityAsync(City city, CancellationToken cancellationToken) { }
+
+
+
+
 	public async Task<PointOfInterest?> GetPointAsync(int cityId, int pointId, CancellationToken cancellationToken)
 	{
 		var result = await _context.PointsOfInterest
