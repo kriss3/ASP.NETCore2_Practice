@@ -27,10 +27,11 @@ public class PointsOfInterestController(ICityInfoService cityInfoService) : Cont
     }
     
     [HttpGet("{cityId}/pointofinterest/{id}", Name = "GetPointOfInterest")]
-    public IActionResult GetPointOfInterest(int cityId, int id)
+    public async Task<IActionResult> GetPointOfInterest(int cityId, int id)
     {
-        var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
-        if (foundCity == null)
+        //var foundCity = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
+        var foundCity = await _cityInfoService.GetCityAsync(cityId, true, CancellationToken.None);
+		if (foundCity == null)
             return NotFound();
 
         var foundPointOfInterest = foundCity.PointsOfInterest.FirstOrDefault(p => p.Id == id);
