@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityInfo.API", "CityInfo.API\CityInfo.API.csproj", "{6031929A-26AE-4B06-862D-3C364F0A04EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CityInfo.UnitTests", "CityInfo.UnitTests\CityInfo.UnitTests.csproj", "{39E5AAB9-FCFF-4920-A25B-04ACE61B6138}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6031929A-26AE-4B06-862D-3C364F0A04EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6031929A-26AE-4B06-862D-3C364F0A04EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6031929A-26AE-4B06-862D-3C364F0A04EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E5AAB9-FCFF-4920-A25B-04ACE61B6138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E5AAB9-FCFF-4920-A25B-04ACE61B6138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E5AAB9-FCFF-4920-A25B-04ACE61B6138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E5AAB9-FCFF-4920-A25B-04ACE61B6138}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
