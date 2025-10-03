@@ -7,4 +7,7 @@ xUnit recently released xUnit v3 and I want to use this opportunity to exlore th
 ## Notes:
 First thing, first. 
 Update to the solution as API went offline due to Aurelia Subscription ended. 
+
 I'm changing this to using proper services and DTOs to be able to fully take advantage of testing capabilities of AutoFixture/FakeItEasy.
+
+Removed in-memory store and now using EF 9. I have two DataSets, one for Cities and one for Point of Interests. 
