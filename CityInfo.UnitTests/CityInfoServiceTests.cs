@@ -10,7 +10,17 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task GetCity_Return_Null_When_City_Not_Found()
 	{
+		// Arrange
+		var repo = A.Fake<ICityInfoRepository>();
+		var service = new CityInfoService(repo);
 
+		A.CallTo(() => repo.GetCityAsync(999, false, A<CancellationToken>._))
+			.Returns((City?)null);
 
+		// Act
+		var result = await service.GetCityAsync(999, false, CancellationToken.None);
+
+		// Assert
+		Assert.Null(result);
 	}
 }
