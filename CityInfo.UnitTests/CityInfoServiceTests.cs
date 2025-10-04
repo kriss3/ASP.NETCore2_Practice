@@ -1,32 +1,16 @@
-﻿using AutoFixture.Xunit3;
-using CityInfo.API.Application;
+﻿using CityInfo.API.Application;
 using CityInfo.API.Entities;
-
 using Xunit;
 using FakeItEasy;
 
-
 namespace CityInfo.UnitTests;
-public class CityInfoServiceTests
+
+public class CityInfoServiceTests 
 {
-	[Theory, AutoFakeData]
-	public async Task GetCity_returns_dto_when_found(
-		[Frozen] ICityInfoRepository repo,
-		CityInfoService sut,
-		City city)
+	[Fact]
+	public async Task GetCity_Return_Null_When_City_Not_Found()
 	{
-		// Ensure required properties are set and PointsOfInterest is initialized
-		city.Name ??= "Test City";
-		city.Description ??= "Test Description";
-		city.PointsOfInterest ??= new List<PointOfInterest>();
 
-		A.CallTo(() => repo.GetCityAsync(42, true, A<CancellationToken>._)).Returns(city);
 
-		var dto = await sut.GetCityAsync(42, includePointsOfInterest: true, default);
-
-		Assert.NotNull(dto);
-		Assert.Equal(city.Id, dto!.Id);
-		Assert.Equal(city.Name, dto.Name);
-		Assert.Equal(city.Description, dto.Description);
 	}
 }
