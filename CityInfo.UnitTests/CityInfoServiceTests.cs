@@ -15,7 +15,11 @@ public class CityInfoServiceTests
 		CityInfoService sut,
 		City city)
 	{
+		// Ensure required properties are set and PointsOfInterest is initialized
+		city.Name ??= "Test City";
+		city.Description ??= "Test Description";
 		city.PointsOfInterest ??= new List<PointOfInterest>();
+
 		A.CallTo(() => repo.GetCityAsync(42, true, A<CancellationToken>._)).Returns(city);
 
 		var dto = await sut.GetCityAsync(42, includePointsOfInterest: true, default);
