@@ -21,4 +21,8 @@ public sealed class AutoFakeDataAttribute : AutoDataAttribute
 	{ }
 }
 
-public sealed class InlineAutoFakeDataAttribute : InlineAutoDataAttribute { }
+public sealed class InlineAutoFakeDataAttribute : InlineAutoDataAttribute 
+{
+	public InlineAutoFakeDataAttribute(params object[] values)
+		: base(new AutoFakeDataAttribute(), values) { }
+}
