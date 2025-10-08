@@ -27,5 +27,16 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task GetCity_Returns_CityDto_When_City_Found()
 	{
+		// Arrange
+		var repo = A.Fake<ICityInfoRepository>();
+		var service = new CityInfoService(repo);
+
+		var city = new City
+		{
+			Id = 1,
+			Name = "Paris",
+			Description = "City of Light",
+			PointsOfInterest = new List<PointOfInterest>()
+		};
 	}
 }
