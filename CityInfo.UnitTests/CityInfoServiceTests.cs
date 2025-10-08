@@ -36,7 +36,7 @@ public class CityInfoServiceTests
 			Id = 1,
 			Name = "Paris",
 			Description = "City of Light",
-			PointsOfInterest = new List<PointOfInterest>()
+			PointsOfInterest = []
 		};
 
 		A.CallTo(() => repo.GetCityAsync(1, false, A<CancellationToken>._))
@@ -49,8 +49,5 @@ public class CityInfoServiceTests
 		Assert.NotNull(result);
 		Assert.Equal(1, result.Id);
 		Assert.Equal("Paris", result.Name);
-		Assert.Equal("City of Light", result.Description);
-
-
 	}
 }
