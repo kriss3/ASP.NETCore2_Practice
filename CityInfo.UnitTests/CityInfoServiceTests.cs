@@ -1,6 +1,5 @@
 ﻿using CityInfo.API.Application;
 using CityInfo.API.Entities;
-using Xunit;
 using FakeItEasy;
 
 namespace CityInfo.UnitTests;
