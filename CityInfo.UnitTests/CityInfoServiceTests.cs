@@ -38,5 +38,12 @@ public class CityInfoServiceTests
 			Description = "City of Light",
 			PointsOfInterest = new List<PointOfInterest>()
 		};
+
+		A.CallTo(() => repo.GetCityAsync(1, false, A<CancellationToken>._))
+			.Returns(city);
+
+		// Act
+		var result = await service.GetCityAsync(1, false, CancellationToken.None);
+
 	}
 }
