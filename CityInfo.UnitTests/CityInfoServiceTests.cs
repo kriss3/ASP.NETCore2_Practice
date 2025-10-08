@@ -45,5 +45,12 @@ public class CityInfoServiceTests
 		// Act
 		var result = await service.GetCityAsync(1, false, CancellationToken.None);
 
+		// Assert
+		Assert.NotNull(result);
+		Assert.Equal(1, result.Id);
+		Assert.Equal("Paris", result.Name);
+		Assert.Equal("City of Light", result.Description);
+
+
 	}
 }
