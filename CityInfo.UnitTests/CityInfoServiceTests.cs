@@ -23,4 +23,9 @@ public class CityInfoServiceTests
 		// Assert
 		Assert.Null(result);
 	}
+
+	[Fact]
+	public async Task GetCity_Returns_CityDto_When_City_Found()
+	{
+	}
 }
