@@ -42,14 +42,6 @@ public class CityInfoServiceTests
 		var repo = _fixture.Freeze<ICityInfoRepository>();
 		var service = _fixture.Create<CityInfoService>();
 
-		//var city = new City
-		//{
-		//	Id = 1,
-		//	Name = "Paris",
-		//	Description = "City of Light",
-		//	PointsOfInterest = []
-		//};
-
 		var city = _fixture.Build<City>()
 			.With(c => c.Id, 1)
 			.With(c => c.Name, "Paris")
