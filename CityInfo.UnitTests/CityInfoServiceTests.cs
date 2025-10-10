@@ -6,8 +6,11 @@ using FakeItEasy;
 
 namespace CityInfo.UnitTests;
 
-/* Notes: 
- * 
+/* Notes: In AutoFixture using interface vs concrete class:
+ * When you use the interface (ICityInfoService), AutoFixture with AutoFakeItEasyCustomization
+ * creates a fake implementation that doesn't use your real service logic. 
+ * When you use the concrete class (CityInfoService), AutoFixture creates a real instance 
+ * that depends on the frozen fake repository, allowing your repository setup to work correctly.
  */
 
 public class CityInfoServiceTests 
