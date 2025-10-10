@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.18.1" />
     <PackageReference Include="FakeItEasy" Version="8.3.0" />
 
     <!-- xUnit v3 packages - proper versions -->
