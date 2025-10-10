@@ -16,6 +16,7 @@
     <PackageReference Include="AutoFixture" Version="4.18.1" />
     <PackageReference Include="FakeItEasy" Version="8.3.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
 
     <!-- xUnit v3 packages - proper versions -->
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5">
