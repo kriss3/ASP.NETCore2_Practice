@@ -1,4 +1,6 @@
-﻿using CityInfo.API.Application;
+﻿using AutoFixture;
+using AutoFixture.AutoFakeItEasy;
+using CityInfo.API.Application;
 using CityInfo.API.Entities;
 using FakeItEasy;
 
@@ -6,9 +8,18 @@ namespace CityInfo.UnitTests;
 
 public class CityInfoServiceTests 
 {
+	private IFixture _fixture;
+
+	public CityInfoServiceTests()
+	{
+		_fixture = new Fixture().Customize(new AutoFakeItEasyCustomization());
+	}
+
 	[Fact]
 	public async Task GetCity_Return_Null_When_City_Not_Found()
 	{
+		
+
 		// Arrange
 		var repo = A.Fake<ICityInfoRepository>();
 		var service = new CityInfoService(repo);
