@@ -6,6 +6,10 @@ using FakeItEasy;
 
 namespace CityInfo.UnitTests;
 
+/* Notes: 
+ * 
+ */
+
 public class CityInfoServiceTests 
 {
 	private IFixture _fixture;
@@ -22,7 +26,7 @@ public class CityInfoServiceTests
 
 		// Arrange
 		var repo = _fixture.Freeze<ICityInfoRepository>();
-		var service = _fixture.Create<ICityInfoService>();
+		var service = _fixture.Create<CityInfoService>();
 		var nonExistantCityId = _fixture.Create<int>();
 
 		A.CallTo(() => repo.GetCityAsync(nonExistantCityId, false, A<CancellationToken>._))
