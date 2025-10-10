@@ -18,17 +18,18 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task GetCity_Return_Null_When_City_Not_Found()
 	{
-		
+
 
 		// Arrange
-		var repo = A.Fake<ICityInfoRepository>();
-		var service = new CityInfoService(repo);
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<ICityInfoService>();
+		var nonExistantCityId = _fixture.Create<int>();
 
-		A.CallTo(() => repo.GetCityAsync(999, false, A<CancellationToken>._))
+		A.CallTo(() => repo.GetCityAsync(nonExistantCityId, false, A<CancellationToken>._))
 			.Returns((City?)null);
 
 		// Act
-		var result = await service.GetCityAsync(999, false, CancellationToken.None);
+		var result = await service.GetCityAsync(nonExistantCityId, false, CancellationToken.None);
 
 		// Assert
 		Assert.Null(result);
