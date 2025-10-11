@@ -13,7 +13,7 @@ namespace CityInfo.UnitTests;
  * that depends on the frozen fake repository, allowing your repository setup to work correctly.
  */
 
-public class CityInfoServiceTests 
+public class CityInfoServiceTests
 {
 	private IFixture _fixture;
 
@@ -66,5 +66,10 @@ public class CityInfoServiceTests
 		Assert.NotNull(result);
 		Assert.Equal(1, result.Id);
 		Assert.Equal("Paris", result.Name);
+	}
+
+	[Fact]
+	public async Task AddCity_Returns_CityDto_When_City_Added_Successfully()
+	{
 	}
 }
