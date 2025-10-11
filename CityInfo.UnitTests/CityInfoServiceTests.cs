@@ -96,5 +96,18 @@ public class CityInfoServiceTests
 		// Act
 		var result = await service.AddCityAsync(createCityDto, CancellationToken.None);
 
+		// Assert
+		Assert.NotNull(result);
+		Assert.Equal(5, result.Id);
+		Assert.Equal("Tokyo", result.Name);
+		Assert.Equal("Capital of Japan", result.Description);
+
+		A.CallTo(() => repo.AddCityAsync(A<City>.That.Matches(c =>
+			c.Name == "Tokyo" && c.Description == "Capital of Japan"), A<CancellationToken>._))
+			.MustHaveHappenedOnceExactly();
+
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.MustHaveHappenedOnceExactly();
+
 	}
 }
