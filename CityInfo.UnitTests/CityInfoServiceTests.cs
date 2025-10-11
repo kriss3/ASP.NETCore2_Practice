@@ -87,5 +87,11 @@ public class CityInfoServiceTests
 			.With(c => c.PointsOfInterest, [])
 			.Create();
 
+		A.CallTo(() => repo.AddCityAsync(A<City>._, A<CancellationToken>._))
+			.Returns(addedCity);
+
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.Returns(1);
+
 	}
 }
