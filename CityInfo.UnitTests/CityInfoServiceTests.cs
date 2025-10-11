@@ -71,5 +71,9 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task AddCity_Returns_CityDto_When_City_Added_Successfully()
 	{
+		// Arrange
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<CityInfoService>();
+
 	}
 }
