@@ -75,5 +75,17 @@ public class CityInfoServiceTests
 		var repo = _fixture.Freeze<ICityInfoRepository>();
 		var service = _fixture.Create<CityInfoService>();
 
+		var createCityDto = _fixture.Build<CreateCityDto>()
+			.With(c => c.Name, "Tokyo")
+			.With(c => c.Description, "Capital of Japan")
+			.Create();
+
+		var addedCity = _fixture.Build<City>()
+			.With(c => c.Id, 5)
+			.With(c => c.Name, "Tokyo")
+			.With(c => c.Description, "Capital of Japan")
+			.With(c => c.PointsOfInterest, [])
+			.Create();
+
 	}
 }
