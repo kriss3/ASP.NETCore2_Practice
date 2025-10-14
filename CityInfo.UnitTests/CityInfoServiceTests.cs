@@ -93,6 +93,17 @@ public class CityInfoServiceTests
 		var repo = _fixture.Freeze<ICityInfoRepository>();
 		var service = _fixture.Create<CityInfoService>();
 
+		var cities = _fixture.Build<City>()
+			.With(c => c.PointsOfInterest, [])
+			.CreateMany(3)
+			.ToList();
+
+		A.CallTo(() => repo.GetCitiesAsync(A<CancellationToken>._))
+			.Returns(cities);
+
+
+
+
 	}
 
 	[Fact]
