@@ -104,8 +104,17 @@ public class CityInfoServiceTests
 		// Act
 		var result = await service.GetCitiesAsync(CancellationToken.None);
 
+		// Assert
+		Assert.NotNull(result);
+		Assert.Equal(3, result.Count);
+		Assert.All(result, dto =>
+		{
+			Assert.NotEqual(0, dto.Id);
+			Assert.NotEmpty(dto.Name);
+		});
 
-
+		A.CallTo(() => repo.GetCitiesAsync(A<CancellationToken>._))
+			.MustHaveHappenedOnceExactly();
 	}
 
 	[Fact]
