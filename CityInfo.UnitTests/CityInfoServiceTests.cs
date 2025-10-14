@@ -101,6 +101,8 @@ public class CityInfoServiceTests
 		A.CallTo(() => repo.GetCitiesAsync(A<CancellationToken>._))
 			.Returns(cities);
 
+		// Act
+		var result = await service.GetCitiesAsync(CancellationToken.None);
 
 
 
