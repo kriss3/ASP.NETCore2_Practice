@@ -110,4 +110,9 @@ public class CityInfoServiceTests
 			.MustHaveHappenedOnceExactly();
 
 	}
+
+	[Fact]
+	public async Task GetCities_Returns_Empty_List_When_No_Cities_Found()
+	{
+	}
 }
