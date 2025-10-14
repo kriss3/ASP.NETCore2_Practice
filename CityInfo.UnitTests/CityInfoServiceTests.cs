@@ -15,7 +15,7 @@ namespace CityInfo.UnitTests;
 
 public class CityInfoServiceTests
 {
-	private IFixture _fixture;
+	private readonly IFixture _fixture;
 
 	public CityInfoServiceTests()
 	{
