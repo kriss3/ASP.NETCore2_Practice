@@ -69,6 +69,17 @@ public class CityInfoServiceTests
 	}
 
 	[Fact]
+	public async Task GetCities_Returns_Empty_List_When_No_Cities_Found()
+	{
+		// Arrange
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<CityInfoService>();
+
+		A.CallTo(() => repo.GetCitiesAsync(A<CancellationToken>._))
+			.Returns([]);
+	}
+
+	[Fact]
 	public async Task AddCity_Returns_CityDto_When_City_Added_Successfully()
 	{
 		// Arrange
@@ -109,10 +120,5 @@ public class CityInfoServiceTests
 		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
 			.MustHaveHappenedOnceExactly();
 
-	}
-
-	[Fact]
-	public async Task GetCities_Returns_Empty_List_When_No_Cities_Found()
-	{
 	}
 }
