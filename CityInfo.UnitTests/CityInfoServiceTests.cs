@@ -87,6 +87,11 @@ public class CityInfoServiceTests
 	}
 
 	[Fact]
+	public async Task GetCities_Returns_List_Of_CitySummaryDto_When_Cities_Found()
+	{
+	}
+
+	[Fact]
 	public async Task AddCity_Returns_CityDto_When_City_Added_Successfully()
 	{
 		// Arrange
