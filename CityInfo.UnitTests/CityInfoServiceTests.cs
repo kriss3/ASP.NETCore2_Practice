@@ -89,6 +89,10 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task GetCities_Returns_List_Of_CitySummaryDto_When_Cities_Found()
 	{
+		// Arrange
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<CityInfoService>();
+
 	}
 
 	[Fact]
