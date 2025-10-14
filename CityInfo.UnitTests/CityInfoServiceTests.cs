@@ -77,6 +77,10 @@ public class CityInfoServiceTests
 
 		A.CallTo(() => repo.GetCitiesAsync(A<CancellationToken>._))
 			.Returns([]);
+
+		// Act
+		var result = await service.GetCitiesAsync(CancellationToken.None);
+
 	}
 
 	[Fact]
