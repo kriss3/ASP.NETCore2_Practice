@@ -81,6 +81,9 @@ public class CityInfoServiceTests
 		// Act
 		var result = await service.GetCitiesAsync(CancellationToken.None);
 
+		// Assert
+		Assert.NotNull(result);
+		Assert.Empty(result);
 	}
 
 	[Fact]
