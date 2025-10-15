@@ -183,4 +183,9 @@ public class CityInfoServiceTests
 		A.CallTo(() => repo.AddPointAsync(A<City>._, A<PointOfInterest>._, A<CancellationToken>._))
 			.MustNotHaveHappened();
 	}
+
+	[Fact]
+	public async Task AddPointOfInterest_Returns_PointOfInterestDto_When_Successfully_Added()
+	{
+	}
 }
