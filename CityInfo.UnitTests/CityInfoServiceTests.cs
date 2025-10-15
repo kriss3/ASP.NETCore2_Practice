@@ -174,5 +174,9 @@ public class CityInfoServiceTests
 
 		A.CallTo(() => repo.GetCityAsync(cityId, true, A<CancellationToken>._))
 			.Returns((City?)null);
+
+		// Act
+		var result = await service.AddPointOfInterestAsync(cityId, createPointDto, CancellationToken.None);
+
 	}
 }
