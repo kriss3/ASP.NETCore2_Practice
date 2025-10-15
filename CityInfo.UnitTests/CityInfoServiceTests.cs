@@ -162,4 +162,17 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task AddPointOfInterest_Returns_Null_When_City_Not_Found()
 	{
+		// Arrange
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<CityInfoService>();
+		var cityId = _fixture.Create<int>();
+
+		var createPointDto = _fixture.Build<CreatePointOfInterestDto>()
+			.With(p => p.Name, "Eiffel Tower")
+			.With(p => p.Description, "Iconic landmark")
+			.Create();
+
+		A.CallTo(() => repo.GetCityAsync(cityId, true, A<CancellationToken>._))
+			.Returns((City?)null);
 	}
+}
