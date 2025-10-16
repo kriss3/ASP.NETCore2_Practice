@@ -214,5 +214,16 @@ public class CityInfoServiceTests
 		// Act
 		var result = await service.AddPointOfInterestAsync(cityId, createPointDto, CancellationToken.None);
 
+		// Assert
+		Assert.NotNull(result);
+		Assert.Equal("Eiffel Tower", result.Name);
+		Assert.Equal("Iconic landmark", result.Description);
+
+		A.CallTo(() => repo.AddPointAsync(city, A<PointOfInterest>.That.Matches(p =>
+			p.Name == "Eiffel Tower" && p.Description == "Iconic landmark"), A<CancellationToken>._))
+			.MustHaveHappenedOnceExactly();
+
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.MustHaveHappenedOnceExactly();
 	}
 }
