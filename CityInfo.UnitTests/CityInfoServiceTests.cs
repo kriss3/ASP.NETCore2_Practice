@@ -201,5 +201,14 @@ public class CityInfoServiceTests
 			.With(c => c.Id, cityId)
 			.With(c => c.PointsOfInterest, [])
 			.Create();
+
+		A.CallTo(() => repo.GetCityAsync(cityId, true, A<CancellationToken>._))
+			.Returns(city);
+
+		A.CallTo(() => repo.AddPointAsync(city, A<PointOfInterest>._, A<CancellationToken>._))
+			.Returns(Task.CompletedTask);
+
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.Returns(1);
 	}
 }
