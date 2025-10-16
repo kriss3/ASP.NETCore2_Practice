@@ -237,7 +237,9 @@ public class CityInfoServiceTests
 
 	}
 
-	
-
+	[Fact]
+	public async Task DeletePointOfInterest_Returns_False_When_Point_Not_Found()
+	{
+	}
 
 }
