@@ -242,4 +242,9 @@ public class CityInfoServiceTests
 	{
 	}
 
+	[Fact]
+	public async Task DeletePointOfInterest_Returns_True_When_Successfully_Deleted()
+	{
+	}
+
 }
