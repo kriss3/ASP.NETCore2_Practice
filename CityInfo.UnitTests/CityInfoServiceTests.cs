@@ -231,5 +231,13 @@ public class CityInfoServiceTests
 	public async Task UpdatePointOfInterest_Returns_False_When_Point_Not_Found()
 	{ }
 
+	[Fact]
+	public async Task UpdatePointOfInterest_Returns_True_When_Successfully_Updated()
+	{
+
+	}
+
 	
+
+
 }
