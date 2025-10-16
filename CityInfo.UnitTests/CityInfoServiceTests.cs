@@ -187,5 +187,9 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task AddPointOfInterest_Returns_PointOfInterestDto_When_Successfully_Added()
 	{
+		// Arrange
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<CityInfoService>();
+		var cityId = 1;
 	}
 }
