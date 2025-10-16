@@ -191,5 +191,15 @@ public class CityInfoServiceTests
 		var repo = _fixture.Freeze<ICityInfoRepository>();
 		var service = _fixture.Create<CityInfoService>();
 		var cityId = 1;
+
+		var createPointDto = _fixture.Build<CreatePointOfInterestDto>()
+			.With(p => p.Name, "Eiffel Tower")
+			.With(p => p.Description, "Iconic landmark")
+			.Create();
+
+		var city = _fixture.Build<City>()
+			.With(c => c.Id, cityId)
+			.With(c => c.PointsOfInterest, [])
+			.Create();
 	}
 }
