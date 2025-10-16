@@ -226,4 +226,10 @@ public class CityInfoServiceTests
 		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
 			.MustHaveHappenedOnceExactly();
 	}
+
+	[Fact]
+	public async Task UpdatePointOfInterest_Returns_False_When_Point_Not_Found()
+	{ }
+
+	
 }
