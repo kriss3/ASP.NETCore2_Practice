@@ -210,5 +210,9 @@ public class CityInfoServiceTests
 
 		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
 			.Returns(1);
+
+		// Act
+		var result = await service.AddPointOfInterestAsync(cityId, createPointDto, CancellationToken.None);
+
 	}
 }
