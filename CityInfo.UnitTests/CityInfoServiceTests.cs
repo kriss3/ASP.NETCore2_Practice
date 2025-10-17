@@ -251,7 +251,6 @@ public class CityInfoServiceTests
 		Assert.False(result);
 		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
 			.MustNotHaveHappened();
-
 	}
 
 	[Fact]
