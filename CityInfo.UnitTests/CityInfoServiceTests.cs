@@ -267,6 +267,12 @@ public class CityInfoServiceTests
 			.With(p => p.Description, "Updated landmark")
 			.Create();
 
+		var existingPoint = _fixture.Build<PointOfInterest>()
+			.With(p => p.Id, pointId)
+			.With(p => p.Name, "Original Tower")
+			.With(p => p.Description, "Original landmark")
+			.Create();
+
 	}
 
 	[Fact]
