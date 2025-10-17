@@ -273,6 +273,12 @@ public class CityInfoServiceTests
 			.With(p => p.Description, "Original landmark")
 			.Create();
 
+		A.CallTo(() => repo.GetPointAsync(cityId, pointId, A<CancellationToken>._))
+			.Returns(existingPoint);
+
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.Returns(1);
+
 	}
 
 	[Fact]
