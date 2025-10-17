@@ -247,6 +247,10 @@ public class CityInfoServiceTests
 		// Act
 		var result = await service.UpdatePointOfInterestAsync(cityId, pointId, updatePointDto, CancellationToken.None);
 
+		// Assert
+		Assert.False(result);
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.MustNotHaveHappened();
 
 	}
 
