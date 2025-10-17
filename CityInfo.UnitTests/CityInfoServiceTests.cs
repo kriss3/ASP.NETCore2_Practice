@@ -262,6 +262,11 @@ public class CityInfoServiceTests
 		var cityId = 1;
 		var pointId = 10;
 
+		var updatePointDto = _fixture.Build<UpdatePointOfInterestDto>()
+			.With(p => p.Name, "Updated Tower")
+			.With(p => p.Description, "Updated landmark")
+			.Create();
+
 	}
 
 	[Fact]
