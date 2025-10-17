@@ -282,6 +282,13 @@ public class CityInfoServiceTests
 		// Act
 		var result = await service.UpdatePointOfInterestAsync(cityId, pointId, updatePointDto, CancellationToken.None);
 
+		// Assert
+		Assert.True(result);
+		Assert.Equal("Updated Tower", existingPoint.Name);
+		Assert.Equal("Updated landmark", existingPoint.Description);
+
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.MustHaveHappenedOnceExactly();
 	}
 
 	[Fact]
