@@ -279,6 +279,9 @@ public class CityInfoServiceTests
 		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
 			.Returns(1);
 
+		// Act
+		var result = await service.UpdatePointOfInterestAsync(cityId, pointId, updatePointDto, CancellationToken.None);
+
 	}
 
 	[Fact]
