@@ -236,6 +236,14 @@ public class CityInfoServiceTests
 		var cityId = _fixture.Create<int>();
 		var pointId = _fixture.Create<int>();
 
+		var updatePointDto = _fixture.Build<UpdatePointOfInterestDto>()
+			.With(p => p.Name, "Updated Name")
+			.With(p => p.Description, "Updated Description")
+			.Create();
+
+		A.CallTo(() => repo.GetPointAsync(cityId, pointId, A<CancellationToken>._))
+			.Returns((PointOfInterest?)null);
+
 	}
 
 	[Fact]
