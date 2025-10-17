@@ -229,7 +229,14 @@ public class CityInfoServiceTests
 
 	[Fact]
 	public async Task UpdatePointOfInterest_Returns_False_When_Point_Not_Found()
-	{ }
+	{
+		// Arrange
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<CityInfoService>();
+		var cityId = _fixture.Create<int>();
+		var pointId = _fixture.Create<int>();
+
+	}
 
 	[Fact]
 	public async Task UpdatePointOfInterest_Returns_True_When_Successfully_Updated()
