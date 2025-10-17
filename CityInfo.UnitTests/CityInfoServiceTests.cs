@@ -244,6 +244,10 @@ public class CityInfoServiceTests
 		A.CallTo(() => repo.GetPointAsync(cityId, pointId, A<CancellationToken>._))
 			.Returns((PointOfInterest?)null);
 
+		// Act
+		var result = await service.UpdatePointOfInterestAsync(cityId, pointId, updatePointDto, CancellationToken.None);
+
+
 	}
 
 	[Fact]
