@@ -340,6 +340,7 @@ public class CityInfoServiceTests
 		A.CallTo(() => repo.DeletePoint(existingPoint))
 			.MustHaveHappenedOnceExactly();
 
-
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.MustHaveHappenedOnceExactly();
 	}
 }
