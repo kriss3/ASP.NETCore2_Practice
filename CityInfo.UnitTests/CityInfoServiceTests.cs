@@ -327,5 +327,11 @@ public class CityInfoServiceTests
 
 		A.CallTo(() => repo.GetPointAsync(cityId, pointId, A<CancellationToken>._))
 			.Returns(existingPoint);
+
+		A.CallTo(() => repo.DeletePoint(existingPoint))
+			.Returns(Task.CompletedTask);
+
+		A.CallTo(() => repo.SaveChangesAsync(A<CancellationToken>._))
+			.Returns(1);
 	}
 }
