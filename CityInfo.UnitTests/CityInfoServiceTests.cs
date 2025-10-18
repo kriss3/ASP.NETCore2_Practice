@@ -315,6 +315,10 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task DeletePointOfInterest_Returns_True_When_Successfully_Deleted()
 	{
+		// Arrange
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<CityInfoService>();
+		var cityId = 1;
+		var pointId = 10;
 	}
-
 }
