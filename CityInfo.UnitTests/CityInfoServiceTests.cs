@@ -306,6 +306,10 @@ public class CityInfoServiceTests
 		// Act
 		var result = await service.DeletePointOfInterestAsync(cityId, pointId, CancellationToken.None);
 
+		// Assert
+		Assert.False(result);
+		A.CallTo(() => repo.DeletePoint(A<PointOfInterest>._))
+			.MustNotHaveHappened();
 	}
 
 	[Fact]
