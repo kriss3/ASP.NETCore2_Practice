@@ -297,8 +297,11 @@ public class CityInfoServiceTests
 		// Arrange
 		var repo = _fixture.Freeze<ICityInfoRepository>();
 		var service = _fixture.Create<CityInfoService>();
-		var cityId = 1;
-		var pointId = 10;
+		var cityId = _fixture.Create<int>();
+		var pointId = _fixture.Create<int>();
+
+		A.CallTo(() => repo.GetPointAsync(cityId, pointId, A<CancellationToken>._))
+			.Returns((PointOfInterest?)null);
 	}
 
 	[Fact]
