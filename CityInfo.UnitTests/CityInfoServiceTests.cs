@@ -294,6 +294,11 @@ public class CityInfoServiceTests
 	[Fact]
 	public async Task DeletePointOfInterest_Returns_False_When_Point_Not_Found()
 	{
+		// Arrange
+		var repo = _fixture.Freeze<ICityInfoRepository>();
+		var service = _fixture.Create<CityInfoService>();
+		var cityId = 1;
+		var pointId = 10;
 	}
 
 	[Fact]
